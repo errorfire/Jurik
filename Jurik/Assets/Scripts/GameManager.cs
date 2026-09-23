@@ -1,15 +1,11 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Transform Player1Paddle; public Transform Player2Paddle; public BallController ballController; public int player1Score = 0; public int player2Score = 0;
-    public TextMeshProUGUI textPointsPlayer1; public TextMeshProUGUI textPointsPlayer2; public TextMeshProUGUI PlayersNames;
-
-
-    public GameObject screenEndGame;
+    public TextMeshProUGUI textPointsPlayer1; public TextMeshProUGUI textPointsPlayer2;
     void Start()
     {
         ResetGame();
@@ -21,19 +17,6 @@ public class GameManager : MonoBehaviour
         ballController.ResetBall();
         player1Score = 0; player2Score = 0;
         textPointsPlayer2.text = player2Score.ToString(); textPointsPlayer1.text = player1Score.ToString();
-
-    }
-    public void EndGame()
-    {
-        screenEndGame.SetActive(true);
-        string winner = SaveController.Instance.GetName(player1Score > player2Score);
-        PlayersNames.text =winner + " Ganhou!";
-        SaveController.Instance.SaveWinner(winner);
-        Invoke("LoadMenu", 2f);
-    }
-    private void LoadMenu()
-    {
-        SceneManager.LoadScene("Menu");
     }
     public void ScorePlayer1()
     {
@@ -50,7 +33,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ResetGame();
-            EndGame();
         }
     }
 

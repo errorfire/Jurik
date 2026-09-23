@@ -3,15 +3,6 @@ using UnityEngine;
 public class Player2PaddleControler : MonoBehaviour
 {
     public float speed = 5f;
-    public bool isPlayer1 = true;
-    public SpriteRenderer spriteRenderer;
-    void Start()
-    {
-        if (isPlayer1)
-            spriteRenderer.color = SaveController.Instance.colorPlayer1;
-        else
-            spriteRenderer.color = SaveController.Instance.colorPlayer2;
-    }
     void Update()
     {
         float moveInput = Input.GetAxis("Horizontal");
